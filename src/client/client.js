@@ -1,1 +1,1 @@
-import './client.scss';
+import "./client.scss";

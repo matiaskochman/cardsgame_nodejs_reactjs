@@ -81,3 +81,5 @@ function runServerTests(){
     watch:"build"
   });
 }
+gulp.task("dev", gulp.parallel("server:dev"));
+gulp.task("build", gulp.parallel("server:build"));

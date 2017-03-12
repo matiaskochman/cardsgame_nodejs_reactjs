@@ -35,8 +35,21 @@ function createConfig(isDebug){
  if(isDebug){
 
  }else{
+   plugins.push(
+     new webpack.optimize.DedupePlugin(),
+     new ExtractTextPlugin("[name].css"),
+     new webpack.optimize.UglifyJsPlugin({warnings:false})
+   );
+
+   //ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })
+   //{ notExtractLoader: 'style-loader', loader: 'css-loader' }
+   loaders.css.loader = ExtractTextPlugin.extract({ notExtractLoader: 'style', loader: 'css' });
+   loaders.sass.loader = ExtractTextPlugin.extract({ notExtractLoader: 'style', loader: 'css!sass' });
 
  }
+
+ console.log("isDebug: " +isDebug);
+ console.log("process.env.NODE_ENV: "+process.env.NODE_ENV )
  return {
    name:"client",
    devtool,
@@ -62,5 +75,5 @@ function createConfig(isDebug){
  };
 }
 
-module.exports = createConfig(process.env.NODE_ENV!=="production");
+module.exports = createConfig(process.env.NODE_ENV !== "production");
 module.exports.create = createConfig;

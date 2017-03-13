@@ -18,7 +18,7 @@ app.use(express.static("public")); //tell express to serve out any file in the p
 
 const useExternalStyles = !isDevelopement;
 const scriptRoot = isDevelopement
-    ? "http://localhost:8080/build"
+    ? "http://localhost:9000/build/"
     : "/build";
 
 app.get("*",(req,res) => {

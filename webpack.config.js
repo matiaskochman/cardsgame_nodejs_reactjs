@@ -8,9 +8,8 @@ const vendor = ["lodash"];
 function createConfig(isDebug){
  const devtool = isDebug ? "cheap-module-source-map" : null;
  const plugins = [
-//   new webpack.optimize.CommonsChunkPlugin("vendor","vendor.js"),
-   new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js' }),
 
+   new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' }),
    new webpack.DefinePlugin({
      "process.env" : {
        NODE_ENV : `"${process.env.NODE_ENV || "developement "}"`
@@ -21,8 +20,8 @@ function createConfig(isDebug){
  ];
 
  const loaders = {
-   js: {test:/\.jsx?$/, loader: "babel", exclude: "/node_modules/"},
-   eslint: {test:/\.jsx?$/, loader: "eslint", exclude: "/node_modules/"},
+   js: {test:/\.jsx?$/, loader: "babel", exclude: /node_modules/},
+   eslint: {test:/\.jsx?$/, loader: "eslint", exclude: /node_modules/},
    json: {test:/\.json$/, loader: "json"},
    css: {test:/\.css$/, loader: "style!css?sourceMap"},
    sass: {test:/\.scss$/, loader: "style!css?sourceMap!sass?sourceMap"},

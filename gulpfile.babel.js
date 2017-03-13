@@ -96,14 +96,27 @@ const consoleStats = {
   exclude:["node_modules"],
   chunks:false,
   assets:false,
-  timrings:false,
+  timings:true,
   modules:false,
   hash:false,
   version:false
 }
 
-gulp.task("client:build", buildClient);
-gulp.task("client:watch", watchClient);
+gulp.task("client:clean",cb=>{
+  rimraf("./public/build",()=>cb());
+})
+gulp.task("client:build",
+  gulp.series(
+    "client:clean",
+     buildClient
+  )
+);
+gulp.task("client:dev",
+  gulp.series(
+    "client:clean",
+    watchClient
+  )
+);
 
 function buildClient(cb){
   webpack(webpackConfig,(err,stats)=>{
@@ -127,5 +140,16 @@ function watchClient(){
   server.listen(9000,()=>{});
 }
 
-gulp.task("dev", gulp.parallel("server:dev"));
-gulp.task("build", gulp.parallel("server:build"));
+
+
+// ------------------------
+// Other Tasks
+
+gulp.task("dev",
+  gulp.parallel(
+    "server:dev",
+    "client:dev"
+  )
+);
+
+gulp.task("build", gulp.parallel("server:build","client:build"));

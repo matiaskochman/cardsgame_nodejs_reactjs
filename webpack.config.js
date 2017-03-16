@@ -3,7 +3,11 @@ var path = require("path"),
     webpack = require("webpack"),
     ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-const vendor = ["lodash"];
+const vendor = [
+  "lodash",
+  "react",
+  "react-dom"
+];
 
 function createConfig(isDebug){
  const devtool = isDebug ? "cheap-module-source-map" : null;

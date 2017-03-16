@@ -1,11 +1,15 @@
 import "./app.scss";
-
 import React, {Component} from 'react';
 
-class AppContainer import Component{
+class AppContainer extends Component{
+
+  componentWillMount(){
+    console.log("hola pianola solo se ve 1 vez por el modulo react-hot-loader");
+  }
+
   render(){
     return(
-      <h1>Hello work!</h1>
+      <h1>Hello work! pianola</h1>
     );
   }
 }

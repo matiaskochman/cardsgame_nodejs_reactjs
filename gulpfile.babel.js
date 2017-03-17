@@ -64,7 +64,8 @@ function runServer(){
   return $.nodemon({
     script:"./server.js",
     watch:"build",
-    ignore:["**/__tests"]
+    ignore:["**/__tests"],
+    exec: "node --debug"  //debuggin nodejs
   });
 }
 

@@ -8,10 +8,25 @@ class AppContainer extends Component{
   }
 
   render(){
+    const {main,sidebar} =  this.props;
     return(
-      <h1>Hello work! pianola</h1>
+      <div className={`c-application`}>
+        <div className="inner">
+          <div className="sidebar">
+            {sidebar}
+          </div>
+          <div className="main">
+            {main}
+          </div>
+        </div>
+      </div>
     );
   }
+
+  _click(){
+    console.log("Stuff");
+  }
 }
+
 
 export default AppContainer;
